@@ -3,10 +3,11 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette');
 
 body {
-    background-color: gray;
+    background-color: lightgray;
     color: white;
     font-family: 'Lato', sans-serif;
     box-sizing: border-box;
+    text-align: center;
 }
 
 //Variables
@@ -27,24 +28,28 @@ $main-color-light: #2b508c;
         background-color: $main-color-light;
     }
 }
-
+//Styles for a single board and two button: create new board and create new column
 .board {
     text-align: center;
     background-image: url("https://images.pexels.com/photos/625219/pexels-photo-625219.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb");
     background-size: cover;
     padding: 10px;
+    margin: 10px;
+    position: relative;
     h1 {
         letter-spacing: 2px;
         font-size: 50px;
         font-family: 'Vollkorn SC', serif;
         margin: 10px;
     }
-    .create-column {
-        @include add-button();
-        padding: 10px 20px;
-        margin-bottom: 20px;
-    }
 }
+.create-column,
+.create-board {
+    @include add-button();
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+//Styles for a single column and column container
 .column-container {
     display: flex;
     flex-wrap: wrap;
@@ -64,7 +69,7 @@ $main-color-light: #2b508c;
         box-shadow: 0px 0px 21px 4px rgba(255,255,255,1);
     }
 }
-//Styles for column title, button delete and button add a card
+//Styles for column: title, button delete a card and button add a card
 .column-title {
     background-color: $main-color-light;
     margin-top: 0;
@@ -79,7 +84,8 @@ $main-color-light: #2b508c;
         background-color: $main-color-light;
     }
 }
-.btn-delete {
+.btn-delete,
+.btn-delete-board {
     @include fixed-button(); 
     background-color: $main-color-light;
     border: none;
@@ -90,6 +96,9 @@ $main-color-light: #2b508c;
         font-size: 24px;
         padding: 4px 12px;
     }
+}
+.btn-delete-board {
+    background-color: transparent; 
 }
 //Styles for a single card
 .column-card-list {

@@ -73,15 +73,6 @@ $(function() {
         }
     }
 
-    var board = {
-        name: "Kanban board",
-        addColumn: function(column) {
-            this.$element.append(column.$element);
-            initSortable();
-        },
-        $element: $("#board .column-container")
-    };
-
     function initSortable() {
         $('.column-card-list').sortable({
           connectWith: '.column-card-list',
@@ -89,30 +80,48 @@ $(function() {
         }).disableSelection();
     }
 
-    $(".create-column").click(function() {
-        var name = prompt("Enter a column name");
-        var column = new Column(name);
+    function Board(name) {
+        var self = this;
 
-        board.addColumn(column);
+        this.id = randomString()
+        this.name = name;
+        this.$element = createBoard();
+
+        function createBoard() {
+            // CREATING COMPONENTS OF BOARD
+            var $board = $('<div>').addClass('board');
+            var $boardDescription = $('<h1>').addClass('board-description').text(self.name);
+            var $boardDelete = $('<button>').addClass('btn-delete-board').text('x');
+            var $boardAddColumn = $('<button>').addClass('create-column').text('Add a column');
+            var $boardColumnContainer = $('<div>').addClass('column-container');
+            // ADDING EVENTS
+            $boardDelete.click(function() {
+                self.removeBoard();
+            });
+            $boardAddColumn.click(function(){
+                self.addColumn(new Column(prompt("Enter a column name")));
+            });
+            // CONSTRUCTION BOARD ELEMENT
+            $board.append($boardDelete).append($boardDescription).append($boardAddColumn).append($boardColumnContainer);
+            // RETURN OF CREATED BOARD
+            return $board;
+        }
+    }
+
+    Board.prototype = {
+        addColumn: function(column) {
+            this.$element.children("div").append(column.$element);
+            initSortable();
+        },
+        removeBoard: function() {
+            this.$element.remove();
+        }
+    }
+    
+    $(".create-board").click(function() {
+        var name = prompt("Enter a board name");
+        var board = new Board(name);
+       
+        $(".boards-container").append(board.$element);
     });
-
-    // CREATING COLUMNS
-    var todoColumn = new Column('To do');
-    var doingColumn = new Column('Doing');
-    var doneColumn = new Column('Done');
-
-    // ADDING COLUMNS TO THE BOARD
-    board.addColumn(todoColumn);
-    board.addColumn(doingColumn);
-    board.addColumn(doneColumn);
-
-    // CREATING CARDS
-    var card1 = new Card('Cut .psd file');
-    var card2 = new Card('Carousel');
-    var card3 = new Card("Create kanban boards");
-
-    // ADDING CARDS TO COLUMNS
-    todoColumn.addCard(card1);
-    doingColumn.addCard(card2);
-    doneColumn.addCard(card3);
 })

@@ -5,8 +5,13 @@ function Phone(brand, price, color, weight) {
     this.weight = weight;
 }
 
-Phone.prototype.printInfo = function() {
-    console.log("The phone brand is " + this.brand + ", color is " + this.color + ", the price is " + this.price + "zł and the weight is " + this.weight + "g.");
+Phone.prototype = {
+    getWarrantyCost: function() {
+        return this.price * 0.1;
+    },
+    printInfo: function() {
+        console.log("The phone brand is " + this.brand + ", color is " + this.color + ", the price is " + this.price + "zł, the price of the extended warranty is " + this.getWarrantyCost() + "zł and the weight is " + this.weight + "g.");
+    }
 }
 
 var samsungGalaxyS6 = new Phone("Samsung", 2000, "black", 138);

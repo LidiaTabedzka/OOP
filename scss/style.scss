@@ -105,6 +105,7 @@ $main-color-light: #2b508c;
     list-style-type: none;
     margin: 0;
     padding: 0;
+    min-height: 100px;
 }
 .card {
     background: lightgray;
@@ -113,7 +114,7 @@ $main-color-light: #2b508c;
     text-align: left;
     padding-left: 40px;
     color: $main-color;
-    transition: 0.3s;
+    transition: background-color 0.3s; 
     &:hover {
         background-color: white;
     }
@@ -135,5 +136,5 @@ $main-color-light: #2b508c;
     background: $main-color;
     border: 2px dotted lightgray;
     margin: 10px;
-    height: 52px;
+    height: 48px;
 }

@@ -37,7 +37,9 @@ $(function() {
 
     Column.prototype = {
         addCard: function(card) {
-            this.$element.children('ul').append(card.$element);
+            if (card.description != null && card.description != "") {
+                this.$element.children('ul').append(card.$element);
+            }
         },
         removeColumn: function() {
             this.$element.remove();
@@ -110,8 +112,10 @@ $(function() {
 
     Board.prototype = {
         addColumn: function(column) {
-            this.$element.children("div").append(column.$element);
-            initSortable();
+            if (column.name != null && column.name != "") {
+                this.$element.children("div").append(column.$element);
+                initSortable();
+            }
         },
         removeBoard: function() {
             this.$element.remove();
@@ -122,6 +126,8 @@ $(function() {
         var name = prompt("Enter a board name");
         var board = new Board(name);
        
-        $(".boards-container").append(board.$element);
+        if (board.name != null && board.name != "") {
+            $(".boards-container").append(board.$element);
+        }
     });
 })

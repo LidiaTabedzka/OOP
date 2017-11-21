@@ -26,6 +26,7 @@ $main-color-light: #2b508c;
     transition: 0.3s;
     &:hover {
         background-color: $main-color-light;
+        cursor: pointer;
     }
 }
 //Styles for a single board and two button: create new board and create new column
@@ -68,6 +69,13 @@ $main-color-light: #2b508c;
         -moz-box-shadow: 0px 0px 21px 4px rgba(255,255,255,1);
         box-shadow: 0px 0px 21px 4px rgba(255,255,255,1);
     }
+    input {
+        height: 23px;
+        margin-bottom: 0;
+    }
+    .btn {
+        height: 37px;
+    }
 }
 //Styles for column: title, button delete a card and button add a card
 .column-title {
@@ -95,6 +103,7 @@ $main-color-light: #2b508c;
     &:hover {
         font-size: 24px;
         padding: 4px 12px;
+        cursor: pointer;
     }
 }
 .btn-delete-board {
@@ -137,4 +146,46 @@ $main-color-light: #2b508c;
     border: 2px dotted lightgray;
     margin: 10px;
     height: 48px;
+}
+//style dla pola input oraz przycisków accept i delete
+.board-form,
+.column-form,
+.card-form {
+    display: none;
+}
+input {
+    height: 29px;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+.btn {
+    height: 43px;
+    width: 43px;
+    border: none;
+    color: white;
+    transition: 0.3s;
+    &:hover {
+        cursor: pointer;
+    }
+}
+.accept-button {
+    background-color: #0e590b;
+    &:hover {
+        background-color: #189613;
+    }
+}
+.delete-button {
+    background-color: #ba1f0b;
+    &:hover {
+        background-color: #e5260d;
+    }
+}
+.board-alert,
+.column-alert {
+    color: #ba1f0b;
+    display: inline;
+    margin-left: 10px;
+}
+.column-alert {
+    color: white;
 }

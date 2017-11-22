@@ -26,10 +26,12 @@ $(function() {
             var $inputElement = $('<input>').addClass('card-form').attr("placeholder", "Enter a card description").attr("id", randomString());
             var inputElementId = $inputElement.attr("id");
 
-            var $inputAcceptCard = $('<button>').addClass('card-form btn accept-button').text('V').attr("id", randomString());
+            var $inputAcceptCard = $('<button>').addClass('card-form btn accept-button').attr("id", randomString());
+            $inputAcceptCard.append('<i class="fa fa-check" aria-hidden="true"></i>');
             var acceptButtonId = $inputAcceptCard.attr("id");
 
-            var $inputDeleteCard = $('<button>').addClass('card-form btn delete-button').text('X').attr("id", randomString());
+            var $inputDeleteCard = $('<button>').addClass('card-form btn delete-button').attr("id", randomString());
+            $inputDeleteCard.append('<i class="fa fa-times" aria-hidden="true"></i>');
             var deleteButtonId = $inputDeleteCard.attr("id");
 
             var $cardAlert = $('<p>').addClass('card-alert');
@@ -39,8 +41,8 @@ $(function() {
                 self.removeColumn();
             });
             $columnAddCard.click(function(){
-                $("#" + inputElementId).val("");
-                showHideButtons("none", "inline");               
+                showHideButtons("none", "inline");    
+                $("#" + inputElementId).val("").focus();           
             });
             $inputAcceptCard.click(function(){
                 if (($("#" + inputElementId)).val() == "") {
@@ -49,6 +51,12 @@ $(function() {
                     self.addCard(new Card(($("#" + inputElementId)).val()));
                     showHideButtons("inline", "none");
                     $cardAlert.text("");
+                }
+            });
+            $inputElement.keyup(function(event){
+                event.preventDefault();
+                if (event.keyCode === 13) {
+                    $inputAcceptCard.click();
                 }
             });
             $inputDeleteCard.click(function(){
@@ -136,10 +144,12 @@ $(function() {
             var $inputElement = $('<input>').addClass('column-form').attr("placeholder", "Enter a column name").attr("id", randomString());
             var inputElementId = $inputElement.attr("id");
 
-            var $inputAcceptColumn = $('<button>').addClass('column-form btn accept-button').text('V').attr("id", randomString());
+            var $inputAcceptColumn = $('<button>').addClass('column-form btn accept-button').attr("id", randomString());
+            $inputAcceptColumn.append('<i class="fa fa-check" aria-hidden="true"></i>');
             var acceptButtonId = $inputAcceptColumn.attr("id");
 
-            var $inputDeleteColumn = $('<button>').addClass('column-form btn delete-button').text('X').attr("id", randomString());
+            var $inputDeleteColumn = $('<button>').addClass('column-form btn delete-button').attr("id", randomString());
+            $inputDeleteColumn.append('<i class="fa fa-times" aria-hidden="true"></i>');
             var deleteButtonId = $inputDeleteColumn.attr("id");
 
             var $columnAlert = $('<p>').addClass('column-alert');
@@ -150,8 +160,8 @@ $(function() {
                 self.removeBoard();
             });
             $boardAddColumn.click(function(){
-                $("#" + inputElementId).val("");
                 showHideButtons("none", "inline");
+                $("#" + inputElementId).val("").focus();
             });
             $inputAcceptColumn.click(function(){
                 if (($("#" + inputElementId)).val() == "") {
@@ -160,6 +170,12 @@ $(function() {
                     self.addColumn(new Column(($("#" + inputElementId)).val()));
                     showHideButtons("inline", "none");
                     $columnAlert.text("");
+                }
+            });
+            $inputElement.keyup(function(event){
+                event.preventDefault();
+                if (event.keyCode === 13) {
+                    $inputAcceptColumn.click();
                 }
             });
             $inputDeleteColumn.click(function(){
@@ -194,6 +210,7 @@ $(function() {
     $(".create-board").click(function() {
         document.getElementById("boardInput").value = "";
         showHideBoardButtons("inline", "none");
+        $("#boardInput").focus();
     });
     
     //Pole do wpisania nazwy nowej tablicy - przycisk accept
@@ -208,6 +225,12 @@ $(function() {
             $(".boards-container").append(board.$element);
             $(".board-alert").text("");
             showHideBoardButtons("none", "inline");
+        }
+    });
+    $("#boardInput").keyup(function(event){
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            $("#boardInputAccept").click();
         }
     });
 

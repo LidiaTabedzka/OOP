@@ -3,13 +3,14 @@
         <head>
             <meta charset="UTF-8">
             <title>Kanban board</title>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
             <link rel="stylesheet" type="text/css" href="css/style.css">
         </head>
         <body>
             <button class="create-board">Add a new board</button>
             <input class="board-form" id="boardInput" placeholder="Enter a board name">
-            <button class="board-form btn accept-button" id="boardInputAccept">V</button>
-            <button class="board-form btn delete-button" id="boardInputDelete">X</button>
+            <button class="board-form btn accept-button" id="boardInputAccept"><i class="fa fa-check" aria-hidden="true"></i></button>
+            <button class="board-form btn delete-button" id="boardInputDelete"><i class="fa fa-times" aria-hidden="true"></i></button>
             <p class="board-alert"></p>
             <div class="boards-container"></div>
             
